@@ -1,20 +1,14 @@
-package com.librarymanagement.db;
+package com.librarymanagement.obj;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "book")
-public class Book {
-    @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class BookObj {
     private Integer id;
     private String title;
     private String author;

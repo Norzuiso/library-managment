@@ -1,0 +1,9 @@
+package com.librarymanagement.repository;
+
+import com.librarymanagement.db.Book;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface BookRepository extends JpaRepository<Book, Integer>, BookRepositoryCustom {
+}
