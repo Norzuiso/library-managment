@@ -13,6 +13,8 @@ import java.time.LocalDate;
 public class LoanObj {
     private Integer id;
     private LocalDate loanDate;
+    private LocalDate expiredDate;
+    private Boolean isActive;
     private BookObj book;
     private ReaderObj reader;
 }

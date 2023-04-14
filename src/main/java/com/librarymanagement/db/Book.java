@@ -23,6 +23,8 @@ public class Book {
     private String publishYear;
     private String edition;
     private Long copiesQuantity;
+
+    @Column( length = 1000 )
     private String synopsis;
     private String SCDD;
     private Boolean isAvailable;
