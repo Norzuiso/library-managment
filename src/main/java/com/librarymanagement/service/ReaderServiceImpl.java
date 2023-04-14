@@ -37,6 +37,12 @@ public class ReaderServiceImpl implements ReaderService {
     }
 
     @Override
+    public ReaderObj getById(Integer id) {
+        Reader reader = repository.getReferenceById(id);
+        return helper.readerToObj(reader);
+    }
+
+    @Override
     public List<ReaderObj> getAllReader() {
         return helper.readerListToObjList(repository.findAll());
     }
