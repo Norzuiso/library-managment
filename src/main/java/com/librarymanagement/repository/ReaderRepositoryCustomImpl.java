@@ -41,7 +41,7 @@ public class ReaderRepositoryCustomImpl implements ReaderRepositoryCustom {
         CriteriaQuery<Reader> criteriaQuery = criteriaBuilder.createQuery(Reader.class);
         List<Predicate> predicates = new ArrayList<>();
 
-        Root<Book> root = criteriaQuery.from(Book.class);
+        Root<Reader> root = criteriaQuery.from(Reader.class);
         if (request.getId() != null) {
             predicates.add(criteriaBuilder
                     .equal(root.get("id"), request.getId()));
