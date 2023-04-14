@@ -2,7 +2,7 @@ package com.librarymanagement.repository;
 
 import com.librarymanagement.db.Book;
 import com.librarymanagement.db.BookSearchRequest;
-import com.librarymanagement.obj.PaginationBookObj;
+import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

@@ -32,7 +32,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookObj editBook(BookObj obj, Integer id) {
-        return null;
+        obj.setId(id);
+        return createBook(obj);
     }
 
     @Override

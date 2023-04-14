@@ -20,6 +20,9 @@ public class Loan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalDate loanDate;
+    private LocalDate expiredDate;
+    private Boolean isActive;
+
     @OneToOne
     @JoinColumn(name = "book_id")
     private Book book;
