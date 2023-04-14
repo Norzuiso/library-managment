@@ -29,6 +29,7 @@ public class LoanHelperImpl implements LoanHelper {
             loan.setExpiredDate(obj.getExpiredDate() == null ? LocalDate.now() : obj.getExpiredDate());
             loan.setBook(bookHelper.objToBook(obj.getBook()));
             loan.setReader(readerHelper.objToReader(obj.getReader()));
+            loan.setIsActive(obj.getIsActive());
         }
         return loan;
     }
@@ -39,10 +40,11 @@ public class LoanHelperImpl implements LoanHelper {
         if (loan != null) {
             obj.setId(loan.getId() != null ? loan.getId() : 0);
             obj.setLoanDate(loan.getLoanDate() != null ? loan.getLoanDate() : LocalDate.now());
+            obj.setIsActive(loan.getIsActive());
             obj.setBook(bookHelper.bookToObj(loan.getBook()));
             obj.setReader(readerHelper.readerToObj(loan.getReader()));
         }
-        return null;
+        return obj;
     }
 
     @Override

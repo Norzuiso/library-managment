@@ -11,6 +11,9 @@ import java.util.List;
 public interface ReaderService {
     ReaderObj createReader(ReaderObj obj);
     ReaderObj updateReader(ReaderObj obj, Integer id);
+
+    ReaderObj getById(Integer id);
+
     List<ReaderObj> getAllReader();
     List<ReaderObj> getAllReaderFiltered(ReaderSearchRequest searchRequest);
 

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -35,7 +34,11 @@ public class BookServiceImpl implements BookService {
         obj.setId(id);
         return createBook(obj);
     }
-
+    @Override
+    public BookObj getBookById(Integer id) {
+        Book referenceById = repository.getReferenceById(id);
+        return helper.bookToObj(referenceById);
+    }
     @Override
     public PaginationBookObj getBooksByPage(int page, int amountOfElements) {
         Page<Book> pages = repository.findAll(PageRequest.of(page, amountOfElements));
