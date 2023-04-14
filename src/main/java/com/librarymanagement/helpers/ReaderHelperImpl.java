@@ -30,7 +30,7 @@ public class ReaderHelperImpl implements ReaderHelper {
             obj.setAddress(reader.getAddress() != null ? reader.getAddress() : "");
             obj.setPhone(reader.getPhone() != null ? reader.getPhone() : "");
         }
-        return null;
+        return obj;
     }
 
     @Override
