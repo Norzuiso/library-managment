@@ -32,7 +32,7 @@ public class LoanController {
     }
 
     @GetMapping("/{id}")
-    private LoanObj getAllLoans(Integer id) {
+    private LoanObj getAllLoans(@PathVariable Integer id) {
         return service.getLoanById(id);
     }
 }
