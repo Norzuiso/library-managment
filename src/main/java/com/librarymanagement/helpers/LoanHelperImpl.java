@@ -40,6 +40,7 @@ public class LoanHelperImpl implements LoanHelper {
         if (loan != null) {
             obj.setId(loan.getId() != null ? loan.getId() : 0);
             obj.setLoanDate(loan.getLoanDate() != null ? loan.getLoanDate() : LocalDate.now());
+            obj.setExpiredDate(loan.getExpiredDate() != null ? loan.getExpiredDate() : LocalDate.now());
             obj.setIsActive(loan.getIsActive());
             obj.setBook(bookHelper.bookToObj(loan.getBook()));
             obj.setReader(readerHelper.readerToObj(loan.getReader()));
