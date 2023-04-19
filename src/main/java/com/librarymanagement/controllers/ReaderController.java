@@ -35,6 +35,11 @@ public class ReaderController {
         return readerService.getAllReader();
     }
 
+
+    @GetMapping("/{id}")
+    public ReaderObj getReaderById(@PathVariable Integer id) {
+        return readerService.getById(id);
+    }
     @PostMapping("/filter")
     public List<ReaderObj> getAllReaderFiltered(@RequestBody ReaderSearchRequest searchRequest) {
         return readerService.getAllReaderFiltered(searchRequest);

@@ -28,4 +28,9 @@ public class LibraryController {
     LibraryObj updateLibrary(@RequestBody LibraryObj obj) {
         return service.updateLibrary(obj);
     }
+
+    @GetMapping("/{password}")
+    Boolean loginLibrary(@PathVariable String password) {
+        return service.login(password);
+    }
 }
