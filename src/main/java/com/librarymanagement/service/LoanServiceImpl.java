@@ -62,4 +62,10 @@ public class LoanServiceImpl implements LoanService {
         List<Loan> all = repository.findAll();
         return helper.loanListToObjList(all);
     }
+
+    @Override
+    public LoanObj getLoanById(Integer id) {
+        Loan loan = repository.getReferenceById(id);
+        return helper.loanToObj(loan);
+    }
 }

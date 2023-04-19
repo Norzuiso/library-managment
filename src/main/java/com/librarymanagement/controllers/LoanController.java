@@ -30,4 +30,9 @@ public class LoanController {
     private List<LoanObj> getAllLoans() {
         return service.getAllLoans();
     }
+
+    @GetMapping("/{id}")
+    private LoanObj getAllLoans(Integer id) {
+        return service.getLoanById(id);
+    }
 }
