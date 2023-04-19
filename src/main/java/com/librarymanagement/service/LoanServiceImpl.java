@@ -51,8 +51,8 @@ public class LoanServiceImpl implements LoanService {
         book.setCopiesQuantity(copiesQuantity);
         BookObj bookSaved = bookService.editBook(book, book.getId());
         obj.setBook(bookSaved);
-
         Loan loan = helper.objToLoan(obj);
+        loan.setIsActive(false);
         Loan save = repository.saveAndFlush(loan);
         return helper.loanToObj(save);
     }
