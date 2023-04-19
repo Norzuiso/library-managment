@@ -44,4 +44,9 @@ public class LibraryServiceImpl implements LibraryService {
         Library saved = repository.saveAndFlush(helper.objToLibrary(obj));
         return helper.libraryToObj(saved);
     }
+
+    @Override
+    public Boolean login(String password) {
+        return repository.existsLibraryByPassword(password);
+    }
 }

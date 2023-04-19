@@ -49,6 +49,10 @@ public class BookController {
         return bookService.getAvailableBooksByPage(page, amountOfElements);
     }
 
+    @GetMapping("/{id}")
+    public BookObj getBookById(@PathVariable int id) {
+        return bookService.getBookById(id);
+    }
 
     @PostMapping("/filter")
     public List<BookObj> getBookByFilter(@RequestBody BookSearchRequest searchRequest) {

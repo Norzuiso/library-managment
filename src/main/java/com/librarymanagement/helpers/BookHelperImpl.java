@@ -13,17 +13,17 @@ public class BookHelperImpl implements BookHelper {
     public Book objToBook(BookObj obj) {
         Book book = new Book();
         if (obj != null) {
-            book.setId(obj.getId() == null ? 0 : obj.getId());
             book.setTitle(obj.getTitle() == null ? "" : obj.getTitle());
             book.setAuthor(obj.getAuthor() == null ? "" : obj.getAuthor());
             book.setGender(obj.getGender() == null ? "" : obj.getGender());
-            book.setEdition(obj.getEdition() == null ? "" : obj.getEdition());
             book.setPublishYear(obj.getPublishYear() == null ? "" : obj.getPublishYear());
             book.setEdition(obj.getEdition() == null ? "" : obj.getEdition());
             book.setCopiesQuantity(obj.getCopiesQuantity() == null ? 0 : obj.getCopiesQuantity());
+            book.setId(obj.getId() == null ? 0 : obj.getId());
             book.setSynopsis(obj.getSynopsis() == null ? "" : obj.getSynopsis());
             book.setSCDD(obj.getSCDD() == null ? "" : obj.getSCDD());
             book.setIsAvailable(obj.getIsAvailable() == null || obj.getIsAvailable());
+            book.setEditorial(obj.getEditorial() == null ? "" : obj.getEditorial());
         }
         return book;
     }
@@ -36,7 +36,7 @@ public class BookHelperImpl implements BookHelper {
             book.setTitle(obj.getTitle() == null ? "" : obj.getTitle());
             book.setAuthor(obj.getAuthor() == null ? "" : obj.getAuthor());
             book.setGender(obj.getGender() == null ? "" : obj.getGender());
-            book.setEdition(obj.getEdition() == null ? "" : obj.getEdition());
+            book.setEditorial(obj.getEditorial() == null ? "" : obj.getEditorial());
             book.setPublishYear(obj.getPublishYear() == null ? "" : obj.getPublishYear());
             book.setEdition(obj.getEdition() == null ? "" : obj.getEdition());
             book.setCopiesQuantity(obj.getCopiesQuantity() == null ? 0 : obj.getCopiesQuantity());
