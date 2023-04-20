@@ -11,10 +11,12 @@ import jakarta.persistence.criteria.Root;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import jakarta.persistence.criteria.Predicate;
 
 @Repository
@@ -129,8 +131,11 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
         );
         criteriaQuery.select(root);
         TypedQuery<Book> query = em.createQuery(criteriaQuery);
+//        return new PageImpl<>(query.getResultList(), page, totalRows);
 
-        return new PageImpl<>(query.getResultList(), page, totalRows);
+        Long totalCount = (long) query.getResultList().size();
+        return PageableExecutionUtils.getPage(query.getResultList(), page, () -> totalCount);
+
     }
 
 

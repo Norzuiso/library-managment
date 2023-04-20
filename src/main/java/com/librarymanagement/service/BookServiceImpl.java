@@ -74,7 +74,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public PaginationBookObj getBooksByFilterAndPage(int page, int amountOfElements, BookSearchRequest searchRequest) {
         Pageable pageable = PageRequest.of(page, amountOfElements);
-        Page<Book> books = repository.FindAllBooksByCriteriaWithPages(searchRequest, pageable, amountOfElements);
+         Page<Book> books = repository.FindAllBooksByCriteriaWithPages(searchRequest, pageable, amountOfElements);
         return new PaginationBookObj(books.getTotalElements(), helper.bookListToObjList(books.getContent()));
     }
 }

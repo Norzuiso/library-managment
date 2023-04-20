@@ -59,7 +59,7 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public List<LoanObj> getAllLoans() {
-        List<Loan> all = repository.findAll();
+        List<Loan> all = repository.findAllByOrderByIdDesc();
         return helper.loanListToObjList(all);
     }
 
