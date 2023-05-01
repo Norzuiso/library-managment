@@ -66,6 +66,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookObj> getBookByFilter(BookSearchRequest searchRequest) {
         List<Book> filterBooks = repository.FindAllBooksByCriteria(searchRequest);
+        if (filterBooks.isEmpty()){
+            return getAllBooks();
+        }
         return helper.bookListToObjList(filterBooks);
     }
 

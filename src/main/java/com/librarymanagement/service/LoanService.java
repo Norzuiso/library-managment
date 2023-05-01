@@ -13,4 +13,6 @@ public interface LoanService{
     List<LoanObj> getAllLoans();
 
     LoanObj getLoanById(Integer id);
+
+    Boolean deleteLoan(Integer id);
 }

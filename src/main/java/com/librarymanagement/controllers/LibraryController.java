@@ -33,4 +33,9 @@ public class LibraryController {
     Boolean loginLibrary(@PathVariable String password) {
         return service.login(password);
     }
+
+    @GetMapping("/logout")
+    Boolean logoutLibrary() {
+        return service.logout();
+    }
 }

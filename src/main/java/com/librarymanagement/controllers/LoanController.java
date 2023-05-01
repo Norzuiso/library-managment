@@ -35,4 +35,9 @@ public class LoanController {
     private LoanObj getAllLoans(@PathVariable Integer id) {
         return service.getLoanById(id);
     }
+
+    @DeleteMapping("/{id}")
+    private Boolean deleteLoan(@PathVariable Integer id){
+        return service.deleteLoan(id);
+    }
 }

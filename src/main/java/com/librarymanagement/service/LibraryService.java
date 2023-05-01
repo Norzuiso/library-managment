@@ -8,4 +8,7 @@ public interface LibraryService {
     LibraryObj updateLibrary(LibraryObj obj);
 
     Boolean login(String password);
+
+    Boolean logout();
+
 }
