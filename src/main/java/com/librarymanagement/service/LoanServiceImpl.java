@@ -34,6 +34,10 @@ public class LoanServiceImpl implements LoanService {
         long copiesQuantity = book.getCopiesQuantity();
         copiesQuantity-=1;
         book.setCopiesQuantity(copiesQuantity);
+        book.setIsAvailable(true);
+        if (book.getCopiesQuantity() ==0){
+            book.setIsAvailable(false);
+        }
         BookObj bookSaved = bookService.editBook(book, book.getId());
 
         ReaderObj reader = readerService.getById(obj.getReader().getId());
