@@ -55,4 +55,9 @@ public class ReaderController {
     public PaginationReaderObj getAllReaderByPageAndFilters(@PathVariable int page, @PathVariable int amountOfElements, @RequestBody ReaderSearchRequest searchRequest) {
         return readerService.getAllReaderByPageAndFilters(page, amountOfElements, searchRequest);
     }
+
+    @DeleteMapping("/{id}")
+    public Boolean deleteReader(@PathVariable int id){
+        return readerService.deleteReader(id);
+    }
 }
