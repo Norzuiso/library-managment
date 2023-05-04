@@ -32,8 +32,12 @@ public class LoanServiceImpl implements LoanService {
         Loan save = repository.saveAndFlush(loan);
         BookObj book = bookService.getBookById(obj.getBook().getId());
         long copiesQuantity = book.getCopiesQuantity();
-        copiesQuantity-=1;
+        copiesQuantity -= 1;
         book.setCopiesQuantity(copiesQuantity);
+        book.setIsAvailable(true);
+        if (book.getCopiesQuantity() == 0) {
+            book.setIsAvailable(false);
+        }
         BookObj bookSaved = bookService.editBook(book, book.getId());
 
         ReaderObj reader = readerService.getById(obj.getReader().getId());
@@ -47,19 +51,35 @@ public class LoanServiceImpl implements LoanService {
     public LoanObj giveBackBook(LoanObj obj) {
         BookObj book = obj.getBook();
         long copiesQuantity = book.getCopiesQuantity();
-        copiesQuantity+=1;
+        copiesQuantity += 1;
         book.setCopiesQuantity(copiesQuantity);
         BookObj bookSaved = bookService.editBook(book, book.getId());
         obj.setBook(bookSaved);
-
         Loan loan = helper.objToLoan(obj);
+        loan.setIsActive(false);
         Loan save = repository.saveAndFlush(loan);
         return helper.loanToObj(save);
     }
 
     @Override
     public List<LoanObj> getAllLoans() {
-        List<Loan> all = repository.findAll();
+        List<Loan> all = repository.findAllByOrderByIdDesc();
         return helper.loanListToObjList(all);
+    }
+
+    @Override
+    public LoanObj getLoanById(Integer id) {
+        Loan loan = repository.getReferenceById(id);
+        return helper.loanToObj(loan);
+    }
+
+    @Override
+    public Boolean deleteLoan(Integer id) {
+        try {
+            repository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

@@ -11,10 +11,12 @@ import jakarta.persistence.criteria.Root;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import jakarta.persistence.criteria.Predicate;
 
 @Repository
@@ -33,31 +35,35 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
             predicates.add(criteriaBuilder
                     .equal(root.get("id"), request.getId()));
         }
-        if (request.getAuthor() != null) {
+        if (request.getTitle() != null && !request.getTitle().isBlank()) {
+            predicates.add(criteriaBuilder
+                    .like(root.get("title"), "%" + request.getTitle() + "%"));
+        }
+        if (request.getAuthor() != null && !request.getAuthor().isBlank()) {
             predicates.add(criteriaBuilder
                     .like(root.get("author"), "%" + request.getAuthor() + "%"));
         }
-        if (request.getGender() != null) {
+        if (request.getGender() != null && !request.getGender().isBlank()) {
             predicates.add(criteriaBuilder
                     .like(root.get("gender"), "%" + request.getGender() + "%"));
         }
 
-        if (request.getEditorial() != null) {
+        if (request.getEditorial() != null && !request.getEditorial().isBlank()) {
             predicates.add(criteriaBuilder
                     .like(root.get("editorial"), "%" + request.getEditorial() + "%"));
         }
 
-        if (request.getPublishYear() != null) {
+        if (request.getPublishYear() != null && !request.getPublishYear().isBlank()) {
             predicates.add(criteriaBuilder
                     .like(root.get("publishYear"), "%" + request.getPublishYear() + "%"));
         }
 
-        if (request.getEdition() != null) {
+        if (request.getEdition() != null && !request.getEdition().isBlank()) {
             predicates.add(criteriaBuilder
                     .like(root.get("edition"), "%" + request.getEdition() + "%"));
         }
 
-        if (request.getSCDD() != null) {
+        if (request.getSCDD() != null && !request.getSCDD().isBlank()) {
             predicates.add(criteriaBuilder
                     .like(root.get("SCDD"), "%" + request.getSCDD() + "%"));
         }
@@ -129,8 +135,11 @@ public class BookRepositoryImpl implements BookRepositoryCustom {
         );
         criteriaQuery.select(root);
         TypedQuery<Book> query = em.createQuery(criteriaQuery);
+//        return new PageImpl<>(query.getResultList(), page, totalRows);
 
-        return new PageImpl<>(query.getResultList(), page, totalRows);
+        Long totalCount = (long) query.getResultList().size();
+        return PageableExecutionUtils.getPage(query.getResultList(), page, () -> totalCount);
+
     }
 
 

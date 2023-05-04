@@ -63,6 +63,16 @@ public class ReaderServiceImpl implements ReaderService {
     public PaginationReaderObj getAllReaderByPageAndFilters(int page, int amountOfElements, ReaderSearchRequest searchRequest) {
         Pageable pageable = PageRequest.of(page, amountOfElements);
         Page<Reader> readers = repository.FindAllReaderByCriteriaWithPages(searchRequest, pageable, amountOfElements);
-        return new PaginationReaderObj(readers.getTotalElements(), helper.readerListToObjList(readers.getContent()));
+            return new PaginationReaderObj(readers.getTotalElements(), helper.readerListToObjList(readers.getContent()));
+    }
+
+    @Override
+    public Boolean deleteReader(int id) {
+        try{
+            repository.deleteById(id);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 }

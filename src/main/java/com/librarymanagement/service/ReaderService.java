@@ -21,5 +21,6 @@ public interface ReaderService {
     PaginationReaderObj getAllReaderByPageAndFilters(int page, int amountOfElements, ReaderSearchRequest searchRequest);
 
 
+    Boolean deleteReader(int id);
 
 }

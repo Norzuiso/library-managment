@@ -30,4 +30,14 @@ public class LoanController {
     private List<LoanObj> getAllLoans() {
         return service.getAllLoans();
     }
+
+    @GetMapping("/{id}")
+    private LoanObj getAllLoans(@PathVariable Integer id) {
+        return service.getLoanById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    private Boolean deleteLoan(@PathVariable Integer id){
+        return service.deleteLoan(id);
+    }
 }

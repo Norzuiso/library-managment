@@ -24,4 +24,5 @@ public interface BookService {
 
     PaginationBookObj getBooksByFilterAndPage(int page, int amountOfElements, BookSearchRequest searchRequest);
 
+    Boolean deleteBookById(int id);
 }

@@ -49,4 +49,9 @@ public class LibraryServiceImpl implements LibraryService {
     public Boolean login(String password) {
         return repository.existsLibraryByPassword(password);
     }
+
+    @Override
+    public Boolean logout() {
+        return repository.existsLibraryByPassword("password");
+    }
 }

@@ -6,12 +6,15 @@ import com.librarymanagement.helpers.BookHelper;
 import com.librarymanagement.obj.BookObj;
 import com.librarymanagement.obj.PaginationBookObj;
 import com.librarymanagement.repository.BookRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Pageable;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @Service
@@ -34,11 +37,13 @@ public class BookServiceImpl implements BookService {
         obj.setId(id);
         return createBook(obj);
     }
+
     @Override
     public BookObj getBookById(Integer id) {
         Book referenceById = repository.getReferenceById(id);
         return helper.bookToObj(referenceById);
     }
+
     @Override
     public PaginationBookObj getBooksByPage(int page, int amountOfElements) {
         Page<Book> pages = repository.findAll(PageRequest.of(page, amountOfElements));
@@ -61,6 +66,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookObj> getBookByFilter(BookSearchRequest searchRequest) {
         List<Book> filterBooks = repository.FindAllBooksByCriteria(searchRequest);
+        if (filterBooks.isEmpty()){
+            return getAllBooks();
+        }
         return helper.bookListToObjList(filterBooks);
     }
 
@@ -76,5 +84,15 @@ public class BookServiceImpl implements BookService {
         Pageable pageable = PageRequest.of(page, amountOfElements);
         Page<Book> books = repository.FindAllBooksByCriteriaWithPages(searchRequest, pageable, amountOfElements);
         return new PaginationBookObj(books.getTotalElements(), helper.bookListToObjList(books.getContent()));
+    }
+
+    @Override
+    public Boolean deleteBookById(int id) {
+        try {
+            repository.deleteById(id);
+            return true;
+        } catch (Exception constraintViolationException) {
+            return false;
+        }
     }
 }

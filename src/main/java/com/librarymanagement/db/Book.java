@@ -2,6 +2,7 @@ package com.librarymanagement.db;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "book")
+@Builder
 public class Book {
     @Id
     @Column(name = "id", nullable = false)

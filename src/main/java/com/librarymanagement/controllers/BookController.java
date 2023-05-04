@@ -63,4 +63,10 @@ public class BookController {
     public PaginationBookObj getBooksByFilterAndPage(@PathVariable int page, @PathVariable int amountOfElements, @RequestBody BookSearchRequest searchRequest) {
         return bookService.getBooksByFilterAndPage(page, amountOfElements, searchRequest);
     }
+
+    @DeleteMapping("/{id}")
+    Boolean deleteBookById(@PathVariable int id){
+        return bookService.deleteBookById(id);
+    }
+
 }
