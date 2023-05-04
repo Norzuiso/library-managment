@@ -2,6 +2,7 @@ package com.librarymanagement.db;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import java.time.LocalTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "loan")
 public class Loan {
     @Id
@@ -20,11 +22,14 @@ public class Loan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalDate loanDate;
+    private LocalDate expiredDate;
+    private Boolean isActive;
+
     @OneToOne
     @JoinColumn(name = "book_id")
     private Book book;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "reader_id")
     private Reader reader;
 }

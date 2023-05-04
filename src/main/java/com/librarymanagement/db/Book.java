@@ -2,6 +2,7 @@ package com.librarymanagement.db;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "book")
+@Builder
 public class Book {
     @Id
     @Column(name = "id", nullable = false)
@@ -23,6 +25,8 @@ public class Book {
     private String publishYear;
     private String edition;
     private Long copiesQuantity;
+
+    @Column( length = 1000 )
     private String synopsis;
     private String SCDD;
     private Boolean isAvailable;

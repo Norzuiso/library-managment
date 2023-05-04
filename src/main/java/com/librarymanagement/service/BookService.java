@@ -11,6 +11,9 @@ import java.util.Map;
 public interface BookService {
     BookObj createBook(BookObj obj);
     BookObj editBook(BookObj obj, Integer id);
+
+    BookObj getBookById(Integer id);
+
     PaginationBookObj getBooksByPage(int page, int amountOfElements);
     List<BookObj> getAvailableBooks();
     List<BookObj> getAllBooks();
@@ -21,4 +24,5 @@ public interface BookService {
 
     PaginationBookObj getBooksByFilterAndPage(int page, int amountOfElements, BookSearchRequest searchRequest);
 
+    Boolean deleteBookById(int id);
 }
